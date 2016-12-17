@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
@@ -27,7 +28,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         button = (ImageButton) findViewById(R.id.iButtonCall);
-
+        //EditText userInput = (EditText) findViewById(R.id.ePhone);
+        //String phoneNumber = userInput.getText().toString();
+        //Integer mPhoneNumber = Integer.parseInt(et.getText().toString());
         // add PhoneStateListener
         PhoneCallListener phoneListener = new PhoneCallListener();
         TelephonyManager telephonyManager = (TelephonyManager) this
@@ -41,7 +44,7 @@ public class MainActivity extends Activity {
             public void onClick(View arg0) {
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:01718236173"));
+                callIntent.setData(Uri.parse("tel:"+((EditText)findViewById(R.id.ePhone)).getText()));
                 if (ContextCompat.checkSelfPermission(context,
                         Manifest.permission.READ_CONTACTS)
                         != PackageManager.PERMISSION_GRANTED) {
